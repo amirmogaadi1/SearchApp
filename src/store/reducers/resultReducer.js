@@ -1,8 +1,8 @@
 import data from "../../assets/ProjectData.json";
+import { SEARCH } from "../../constants/ActionTypes";
 
 const initialState = {
     searchText: '',
-    // reduce the data array and convert it to object keys where the index is the key
     filteredResults: data.reduce((acc, val, index) => {
         return {...acc, [index]: val};
     }, {}),
@@ -10,6 +10,23 @@ const initialState = {
 
 const resultReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH: {
+            return {
+                ...state,
+                searchText: action.payload,
+                filteredResults: data.filter((el) => {
+                    //if no input the return the original
+                    if (action.payload === '') {
+                        return el;
+                    }
+                    //return the item which contains the user input
+                    else {
+                        return el.projectName.toLowerCase().includes(action.payload)
+                    }
+                })
+            };
+        }
+       
         default:
             return state;
     }
