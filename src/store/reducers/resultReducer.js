@@ -1,5 +1,5 @@
 import data from "../../assets/ProjectData.json";
-import { SEARCH } from "../../constants/ActionTypes";
+import { SEARCH, SWITCH_STATUS } from "../../constants/ActionTypes";
 
 const initialState = {
     searchText: '',
@@ -26,7 +26,18 @@ const resultReducer = (state = initialState, action) => {
                 })
             };
         }
-       
+        case SWITCH_STATUS: {
+            return {
+                ...state,
+                filteredResults: {
+                    ...state.filteredResults,
+                    [action.payload.index]: {
+                        ...state.filteredResults[action.payload.index],
+                        status: action.payload.status,
+                    },
+                },
+            };
+        }
         default:
             return state;
     }

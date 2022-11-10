@@ -31,7 +31,7 @@ function Search() {
     };
     return (
         <div className="main">
-            <h1>React Search</h1>
+            <h1>Project Search</h1>
             <div className="search">
                 <Paper
                 component="form"
