@@ -2,6 +2,7 @@ import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {Button, ButtonGroup, Container} from "@mui/material";
 import { SWITCH_STATUS } from "../../constants/ActionTypes";
+import ButtonAppBar from "../AppBar";
 
 function Results() {
     const dispatch = useDispatch();
@@ -9,6 +10,7 @@ function Results() {
     const filteredResults = useSelector((state) => state.resultReducer.filteredResults);
     return (
         <Container maxWidth="sm">
+        <ButtonAppBar/>
         <ul>
             {Object.keys(filteredResults).map((index) => (
                 <div key={index}>
